@@ -1,3 +1,5 @@
+//https://joyous-mittens-bee.cyclic.app
+
 const express = require('express');
 const app = express();
 const cors = require("cors");
@@ -46,6 +48,10 @@ let strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
 passport.use(strategy);
 //add middleware
 app.use(passport.initialize());
+
+app.get('/', (req,res) => {
+    res.status(200).json({"message" : "welcome to the home page"})
+})
 
 app.post("/api/user/register", (req, res) => {
     userService.registerUser(req.body)
