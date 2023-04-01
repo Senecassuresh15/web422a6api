@@ -57,7 +57,9 @@ module.exports.registerUser = function (userData) {
               }
             });
         })
-        .catch((err) => reject(err));
+        .catch((err) =>{ 
+            console.log(err)
+            reject(err)});
     }
   });
 };
