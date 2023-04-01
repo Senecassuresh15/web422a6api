@@ -29,12 +29,14 @@ jwtOptions.jwtFromRequest = ExtractJwt.fromAuthHeaderWithScheme("jwt");
 jwtOptions.secretOrKey = process.env.JWT_SECRET;
 
 var strategy = new JwtStrategy(jwtOptions, function (jwt_payload, next) {
-
   if (jwt_payload) {
     // The following will ensure that all routes using
     // passport.authenticate have a req.user._id, req.user.userName
     // that matches the request payload data
-    next(null, { _id: jwt_payload._id, userName: jwt_payload.userName });
+    next(null, {
+      _id: jwt_payload._id,
+      userName: jwt_payload.userName,
+    });
   } else {
     next(null, false);
   }
@@ -46,9 +48,9 @@ passport.use(strategy);
 // add passport as application-level middleware
 app.use(passport.initialize());
 
-app.get("/", (req, res) => {
-  res.status(200).json({ message: "welcome to the home page" });
-});
+// app.get("/", (req, res) => {
+//   res.status(200).json({ message: "test" });
+// });
 
 app.post("/api/user/register", (req, res) => {
   userService
