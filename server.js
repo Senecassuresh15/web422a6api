@@ -55,7 +55,7 @@ app.use(passport.initialize());
 app.post("/api/user/register", (req, res) => {
   userService
     .registerUser(req.body)
-    .then((user) => {
+    .then((msg) => {
       res.json({ message: msg });
     })
     .catch((msg) => {
