@@ -54,7 +54,8 @@ module.exports.registerUser = function (userData) {
                         reject("There was an error creating the user: " + err);
                     }
                 })
-            }).catch(err => reject(err));
+            })
+            // .catch(err => reject(err));//removed this line
         }
     });
 };
